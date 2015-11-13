@@ -12,8 +12,14 @@ module.exports.startTunnel = function(options) {
             callback();
         },
         function (callback) {
-            tunnel.start(function() {
+            tunnel.start(function(error) {
+              if (error) {
+                console.log(error);
+                process.exit(1);
+              }
+              else {
                 callback();
+              }
             });
         }
     );
